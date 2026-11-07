@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-ivory: #F7F5F0;
+  --forest-dark: #183A34;
+  --coral-accent: #E56B5D;
+  --sage-soft: #DCE8DF;
+  --text-dark: #26302D;
+  --text-muted: #6F7975;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-ivory);
+  color: var(--text-dark);
+}
+
+body {
+  background-color: #F7F5F0;
+  color: #26302D;
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  overflow-x: hidden;
+}
+
+::selection {
+  background-color: #E56B5D;
+  color: #FFFFFF;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5F0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C6D8CE;
+  border-radius: 5px;
+  border: 2px solid #F7F5F0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8FAFA0;
+}
+
+/* Subtle glass/tint effect without overdoing */
+.subtle-sage-card {
+  background-color: #DCE8DF;
+  border: 1px solid rgba(24, 58, 52, 0.08);
+}
+
+.subtle-ivory-card {
+  background-color: #FFFFFF;
+  border: 1px solid rgba(24, 58, 52, 0.06);
+}
+
+.forest-card {
+  background-color: #183A34;
+  color: #F7F5F0;
+}
