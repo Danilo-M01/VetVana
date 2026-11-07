@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import { Check, Calendar, ArrowRight, ChevronDown } from "lucide-react";
 
 interface ServicesProps {
@@ -195,49 +196,73 @@ export default function ServicesThreePillars({ onOpenBooking }: ServicesProps) {
                   />
                 </button>
 
-                {/* Accordion Body */}
-                {isOpen && (
-                  <div className="px-4 pb-4">
-                    <p className="text-sm text-sage-200 mb-4 leading-relaxed">
-                      {pillar.shortDesc}
-                    </p>
-
-                    {/* Subsections as compact list */}
-                    <div className="space-y-3">
-                      {pillar.subsections.map((sub, sIdx) => (
-                        <div
-                          key={sIdx}
-                          className="p-3 rounded-xl bg-white/10 border border-white/15"
-                        >
-                          <h4 className="text-xs font-extrabold text-sage-200 mb-2 flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-coral inline-block" />
-                            {sub.name}
-                          </h4>
-                          <ul className="space-y-1.5">
-                            {sub.items.map((item, iIdx) => (
-                              <li
-                                key={iIdx}
-                                className="text-xs text-sage-100/85 flex items-start gap-2"
-                              >
-                                <Check className="w-3 h-3 text-coral shrink-0 mt-0.5" />
-                                <span className="leading-snug">{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* CTA */}
-                    <button
-                      onClick={onOpenBooking}
-                      className="mt-4 w-full py-3 rounded-xl font-bold text-white bg-coral text-sm flex items-center justify-center gap-2"
+                {/* Accordion Body with Smooth Height Animation */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key={`pillar-content-${idx}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                        transition: {
+                          height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                          opacity: { duration: 0.25, delay: 0.08 },
+                        },
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                        transition: {
+                          height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                          opacity: { duration: 0.15 },
+                        },
+                      }}
+                      className="overflow-hidden"
                     >
-                      <Calendar className="w-4 h-4" />
-                      Zakažite za {pillar.title}
-                    </button>
-                  </div>
-                )}
+                      <div className="px-4 pb-4 pt-1">
+                        <p className="text-sm text-sage-200 mb-4 leading-relaxed">
+                          {pillar.shortDesc}
+                        </p>
+
+                        {/* Subsections as compact list */}
+                        <div className="space-y-3">
+                          {pillar.subsections.map((sub, sIdx) => (
+                            <div
+                              key={sIdx}
+                              className="p-3 rounded-xl bg-white/10 border border-white/15"
+                            >
+                              <h4 className="text-xs font-extrabold text-sage-200 mb-2 flex items-center gap-1.5">
+                                <span className="w-1.5 h-1.5 rounded-full bg-coral inline-block" />
+                                {sub.name}
+                              </h4>
+                              <ul className="space-y-1.5">
+                                {sub.items.map((item, iIdx) => (
+                                  <li
+                                    key={iIdx}
+                                    className="text-xs text-sage-100/85 flex items-start gap-2"
+                                  >
+                                    <Check className="w-3 h-3 text-coral shrink-0 mt-0.5" />
+                                    <span className="leading-snug">{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* CTA */}
+                        <button
+                          onClick={onOpenBooking}
+                          className="mt-4 w-full py-3 rounded-xl font-bold text-white bg-coral hover:bg-coral-600 transition-colors text-sm flex items-center justify-center gap-2 shadow-coral"
+                        >
+                          <Calendar className="w-4 h-4" />
+                          Zakažite za {pillar.title}
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}

@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Stethoscope,
   Feather,
@@ -166,30 +167,54 @@ export default function ServicesSection({ onOpenBooking }: ServicesSectionProps)
                   />
                 </button>
 
-                {isOpen && (
-                  <div className="px-4 pb-4">
-                    <p className="text-sm text-sage-200 mb-4 leading-relaxed">
-                      {cat.desc}
-                    </p>
-                    <ul className="space-y-2 mb-4">
-                      {cat.items.map((item, idx) => (
-                        <li key={idx} className="flex items-start gap-2.5 text-xs text-sage-100/90">
-                          <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                            <Check className="w-2.5 h-2.5 text-coral" />
-                          </div>
-                          <span className="leading-snug">{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <button
-                      onClick={onOpenBooking}
-                      className="w-full py-3 rounded-xl font-bold text-white bg-coral text-sm flex items-center justify-center gap-2"
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key={`cat-content-${cat.id}`}
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{
+                        height: "auto",
+                        opacity: 1,
+                        transition: {
+                          height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+                          opacity: { duration: 0.25, delay: 0.08 },
+                        },
+                      }}
+                      exit={{
+                        height: 0,
+                        opacity: 0,
+                        transition: {
+                          height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
+                          opacity: { duration: 0.15 },
+                        },
+                      }}
+                      className="overflow-hidden"
                     >
-                      <Calendar className="w-4 h-4" />
-                      Zakažite ovu uslugu
-                    </button>
-                  </div>
-                )}
+                      <div className="px-4 pb-4 pt-1">
+                        <p className="text-sm text-sage-200 mb-4 leading-relaxed">
+                          {cat.desc}
+                        </p>
+                        <ul className="space-y-2 mb-4">
+                          {cat.items.map((item, idx) => (
+                            <li key={idx} className="flex items-start gap-2.5 text-xs text-sage-100/90">
+                              <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                                <Check className="w-2.5 h-2.5 text-coral" />
+                              </div>
+                              <span className="leading-snug">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <button
+                          onClick={onOpenBooking}
+                          className="w-full py-3 rounded-xl font-bold text-white bg-coral hover:bg-coral-600 transition-colors text-sm flex items-center justify-center gap-2 shadow-coral"
+                        >
+                          <Calendar className="w-4 h-4" />
+                          Zakažite ovu uslugu
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             );
           })}
