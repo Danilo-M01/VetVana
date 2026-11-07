@@ -119,25 +119,25 @@ export default function ServicesSection({ onOpenBooking }: ServicesSectionProps)
           </p>
         </div>
 
-        {/* ── MOBILE: Accordion ── */}
-        <div className="md:hidden space-y-2.5">
+        {/* ── MOBILE: Accordion (Hardware accelerated, zero lag spike) ── */}
+        <div className="md:hidden space-y-2.5 isolate">
           {categories.map((cat) => {
             const Icon = cat.icon;
             const isOpen = mobileOpen === cat.id;
             return (
               <div
                 key={cat.id}
-                className={`rounded-2xl border overflow-hidden transition-all duration-300 ${
-                  isOpen ? "border-forest bg-forest" : "border-forest/10 bg-white"
+                className={`rounded-2xl border [transform:translateZ(0)] overflow-hidden transition-colors duration-300 ease-in-out ${
+                  isOpen ? "border-forest bg-forest shadow-sm" : "border-forest/10 bg-white"
                 }`}
               >
                 <button
                   onClick={() => setMobileOpen(isOpen ? "" : cat.id)}
-                  className="w-full flex items-center justify-between p-4 text-left"
+                  className="w-full flex items-center justify-between p-4 text-left transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <div
-                      className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                      className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-colors duration-500 ${
                         isOpen ? "bg-coral/20" : "bg-sage-100"
                       }`}
                     >
@@ -145,14 +145,14 @@ export default function ServicesSection({ onOpenBooking }: ServicesSectionProps)
                     </div>
                     <div>
                       <span
-                        className={`text-[10px] font-bold uppercase tracking-wider block ${
+                        className={`text-[10px] font-bold uppercase tracking-wider block transition-colors duration-500 ${
                           isOpen ? "text-sage-300" : "text-charcoal/50"
                         }`}
                       >
                         {cat.accentTag}
                       </span>
                       <h3
-                        className={`text-sm font-extrabold ${
+                        className={`text-sm font-extrabold transition-colors duration-500 ${
                           isOpen ? "text-white" : "text-forest"
                         }`}
                       >
@@ -161,60 +161,47 @@ export default function ServicesSection({ onOpenBooking }: ServicesSectionProps)
                     </div>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
                       isOpen ? "rotate-180 text-coral" : "text-forest/30"
                     }`}
                   />
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`cat-content-${cat.id}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{
-                        height: "auto",
-                        opacity: 1,
-                        transition: {
-                          height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.25, delay: 0.08 },
-                        },
-                      }}
-                      exit={{
-                        height: 0,
-                        opacity: 0,
-                        transition: {
-                          height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.15 },
-                        },
-                      }}
-                      className="overflow-hidden"
+                {/* Accordion Body with Native Fluid CSS Grid (Slow, Luxurious Premium Feel) */}
+                <div
+                  className={`grid transition-[grid-template-rows] duration-[650ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div
+                      className={`px-4 pb-4 pt-1 transition-opacity duration-500 ease-in-out ${
+                        isOpen ? "opacity-100 delay-100" : "opacity-0 pointer-events-none"
+                      }`}
                     >
-                      <div className="px-4 pb-4 pt-1">
-                        <p className="text-sm text-sage-200 mb-4 leading-relaxed">
-                          {cat.desc}
-                        </p>
-                        <ul className="space-y-2 mb-4">
-                          {cat.items.map((item, idx) => (
-                            <li key={idx} className="flex items-start gap-2.5 text-xs text-sage-100/90">
-                              <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
-                                <Check className="w-2.5 h-2.5 text-coral" />
-                              </div>
-                              <span className="leading-snug">{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <button
-                          onClick={onOpenBooking}
-                          className="w-full py-3 rounded-xl font-bold text-white bg-coral hover:bg-coral-600 transition-colors text-sm flex items-center justify-center gap-2 shadow-coral"
-                        >
-                          <Calendar className="w-4 h-4" />
-                          Zakažite ovu uslugu
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      <p className="text-sm text-sage-200 mb-4 leading-relaxed">
+                        {cat.desc}
+                      </p>
+                      <ul className="space-y-2 mb-4">
+                        {cat.items.map((item, idx) => (
+                          <li key={idx} className="flex items-start gap-2.5 text-xs text-sage-100/90">
+                            <div className="w-4 h-4 rounded-full bg-white/10 flex items-center justify-center shrink-0 mt-0.5">
+                              <Check className="w-2.5 h-2.5 text-coral" />
+                            </div>
+                            <span className="leading-snug">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <button
+                        onClick={onOpenBooking}
+                        className="w-full py-3.5 rounded-xl font-bold text-white bg-coral hover:bg-coral-600 transition-colors text-sm flex items-center justify-center gap-2 shadow-coral"
+                      >
+                        <Calendar className="w-4 h-4" />
+                        Zakažite ovu uslugu
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}

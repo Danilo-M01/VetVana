@@ -146,27 +146,27 @@ export default function ServicesThreePillars({ onOpenBooking }: ServicesProps) {
           </p>
         </div>
 
-        {/* ── MOBILE: Accordion layout ── */}
-        <div className="md:hidden space-y-3 mb-6">
+        {/* ── MOBILE: Accordion layout (Hardware accelerated, zero lag spike) ── */}
+        <div className="md:hidden space-y-3 mb-6 isolate">
           {pillars.map((pillar, idx) => {
             const isOpen = openAccordion === idx;
             return (
               <div
                 key={idx}
-                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                className={`rounded-2xl border [transform:translateZ(0)] transition-colors duration-300 ease-in-out overflow-hidden ${
                   isOpen
-                    ? "border-forest bg-forest"
+                    ? "border-forest bg-forest shadow-sm"
                     : "border-forest/10 bg-white"
                 }`}
               >
                 {/* Accordion Header */}
                 <button
                   onClick={() => setOpenAccordion(isOpen ? null : idx)}
-                  className="w-full flex items-center justify-between p-4 text-left"
+                  className="w-full flex items-center justify-between p-4 text-left transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <span
-                      className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 ${
+                      className={`w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs flex-shrink-0 transition-colors duration-500 ${
                         isOpen ? "bg-coral text-white" : "bg-forest/5 text-forest"
                       }`}
                     >
@@ -174,14 +174,14 @@ export default function ServicesThreePillars({ onOpenBooking }: ServicesProps) {
                     </span>
                     <div>
                       <span
-                        className={`text-[10px] font-bold uppercase tracking-wider block mb-0.5 ${
+                        className={`text-[10px] font-bold uppercase tracking-wider block mb-0.5 transition-colors duration-500 ${
                           isOpen ? "text-sage-300" : "text-forest/60"
                         }`}
                       >
                         {pillar.badge}
                       </span>
                       <h3
-                        className={`text-base font-extrabold ${
+                        className={`text-base font-extrabold transition-colors duration-500 ${
                           isOpen ? "text-white" : "text-forest"
                         }`}
                       >
@@ -190,79 +190,65 @@ export default function ServicesThreePillars({ onOpenBooking }: ServicesProps) {
                     </div>
                   </div>
                   <ChevronDown
-                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-300 ${
+                    className={`w-5 h-5 flex-shrink-0 transition-transform duration-[600ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
                       isOpen ? "rotate-180 text-coral" : "text-forest/40"
                     }`}
                   />
                 </button>
 
-                {/* Accordion Body with Smooth Height Animation */}
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`pillar-content-${idx}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{
-                        height: "auto",
-                        opacity: 1,
-                        transition: {
-                          height: { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.25, delay: 0.08 },
-                        },
-                      }}
-                      exit={{
-                        height: 0,
-                        opacity: 0,
-                        transition: {
-                          height: { duration: 0.25, ease: [0.16, 1, 0.3, 1] },
-                          opacity: { duration: 0.15 },
-                        },
-                      }}
-                      className="overflow-hidden"
+                {/* Accordion Body with Native Fluid CSS Grid (Slow, Luxurious Premium Feel) */}
+                <div
+                  className={`grid transition-[grid-template-rows] duration-[650ms] ease-[cubic-bezier(0.32,0.72,0,1)] ${
+                    isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                  }`}
+                >
+                  <div className="overflow-hidden">
+                    <div
+                      className={`px-4 pb-4 pt-1 transition-opacity duration-500 ease-in-out ${
+                        isOpen ? "opacity-100 delay-100" : "opacity-0 pointer-events-none"
+                      }`}
                     >
-                      <div className="px-4 pb-4 pt-1">
-                        <p className="text-sm text-sage-200 mb-4 leading-relaxed">
-                          {pillar.shortDesc}
-                        </p>
+                      <p className="text-sm text-sage-200 mb-4 leading-relaxed">
+                        {pillar.shortDesc}
+                      </p>
 
-                        {/* Subsections as compact list */}
-                        <div className="space-y-3">
-                          {pillar.subsections.map((sub, sIdx) => (
-                            <div
-                              key={sIdx}
-                              className="p-3 rounded-xl bg-white/10 border border-white/15"
-                            >
-                              <h4 className="text-xs font-extrabold text-sage-200 mb-2 flex items-center gap-1.5">
-                                <span className="w-1.5 h-1.5 rounded-full bg-coral inline-block" />
-                                {sub.name}
-                              </h4>
-                              <ul className="space-y-1.5">
-                                {sub.items.map((item, iIdx) => (
-                                  <li
-                                    key={iIdx}
-                                    className="text-xs text-sage-100/85 flex items-start gap-2"
-                                  >
-                                    <Check className="w-3 h-3 text-coral shrink-0 mt-0.5" />
-                                    <span className="leading-snug">{item}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
-                        </div>
-
-                        {/* CTA */}
-                        <button
-                          onClick={onOpenBooking}
-                          className="mt-4 w-full py-3 rounded-xl font-bold text-white bg-coral hover:bg-coral-600 transition-colors text-sm flex items-center justify-center gap-2 shadow-coral"
-                        >
-                          <Calendar className="w-4 h-4" />
-                          Zakažite za {pillar.title}
-                        </button>
+                      {/* Subsections as compact list */}
+                      <div className="space-y-3">
+                        {pillar.subsections.map((sub, sIdx) => (
+                          <div
+                            key={sIdx}
+                            className="p-3 rounded-xl bg-white/10 border border-white/15"
+                          >
+                            <h4 className="text-xs font-extrabold text-sage-200 mb-2 flex items-center gap-1.5">
+                              <span className="w-1.5 h-1.5 rounded-full bg-coral inline-block" />
+                              {sub.name}
+                            </h4>
+                            <ul className="space-y-1.5">
+                              {sub.items.map((item, iIdx) => (
+                                <li
+                                  key={iIdx}
+                                  className="text-xs text-sage-100/85 flex items-start gap-2"
+                                >
+                                  <Check className="w-3 h-3 text-coral shrink-0 mt-0.5" />
+                                  <span className="leading-snug">{item}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        ))}
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+
+                      {/* CTA */}
+                      <button
+                        onClick={onOpenBooking}
+                        className="mt-4 w-full py-3.5 rounded-xl font-bold text-white bg-coral hover:bg-coral-600 transition-colors text-sm flex items-center justify-center gap-2 shadow-coral"
+                      >
+                        <Calendar className="w-4 h-4" />
+                        Zakažite za {pillar.title}
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           })}

@@ -291,41 +291,53 @@ export default function HowItWorksComponent({
                     className={position.className}
                   />
 
-                  {/* Mobile Connecting Flow Line between cards */}
+                  {/* Mobile Connecting Flow Line between cards - Seamless Winding Through Cards */}
                   {index < data.length - 1 && (
-                    <div className="md:hidden flex flex-col items-center justify-center my-0.5 py-1 z-10 relative pointer-events-none">
-                      <svg width="48" height="54" viewBox="0 0 48 54" fill="none" className="overflow-visible">
-                        {/* Soft background line */}
-                        <path
-                          d={index % 2 === 0 ? "M 24 2 C 38 18, 10 36, 24 52" : "M 24 2 C 10 18, 38 36, 24 52"}
-                          stroke="#DCE8DF"
-                          strokeWidth="3.5"
-                          strokeLinecap="round"
+                    <div className="md:hidden flex flex-col items-center justify-center -my-3 z-0 relative pointer-events-none w-full">
+                      <div className="relative w-full max-w-[280px] h-[95px] flex items-center justify-center">
+                        <svg
+                          width="280"
+                          height="95"
+                          viewBox="0 0 280 95"
                           fill="none"
-                        />
-                        {/* Animated dashed line flowing down */}
-                        <m.path
-                          d={index % 2 === 0 ? "M 24 2 C 38 18, 10 36, 24 52" : "M 24 2 C 10 18, 38 36, 24 52"}
-                          stroke="#183A34"
-                          strokeOpacity="0.4"
-                          strokeWidth="2.5"
-                          strokeDasharray="6 4"
-                          strokeLinecap="round"
-                          fill="none"
-                          initial={{ strokeDashoffset: 0 }}
-                          animate={{ strokeDashoffset: -20 }}
-                          transition={{
-                            duration: 1.6,
-                            repeat: Infinity,
-                            ease: "linear",
-                          }}
-                        />
-                        {/* Start node */}
-                        <circle cx="24" cy="2" r="2.5" fill="#183A34" fillOpacity="0.4" />
-                        {/* End target circle pointing to next card's pin */}
-                        <circle cx="24" cy="50" r="3.5" fill="#E56B5D" />
-                        <circle cx="24" cy="50" r="6" stroke="#E56B5D" strokeWidth="1.5" strokeOpacity="0.35" />
-                      </svg>
+                          className="w-full h-full overflow-visible"
+                        >
+                          {/* Soft background halo track */}
+                          <path
+                            d={
+                              index % 2 === 0
+                                ? "M 140 -8 C 260 8, 260 45, 140 45 C 20 45, 20 82, 140 98"
+                                : "M 140 -8 C 20 8, 20 45, 140 45 C 260 45, 260 82, 140 98"
+                            }
+                            stroke="#C6D8CE"
+                            strokeWidth="5"
+                            strokeOpacity="0.5"
+                            strokeLinecap="round"
+                            fill="none"
+                          />
+
+                          {/* Animated dashed line winding continuously through cards */}
+                          <m.path
+                            d={
+                              index % 2 === 0
+                                ? "M 140 -8 C 260 8, 260 45, 140 45 C 20 45, 20 82, 140 98"
+                                : "M 140 -8 C 20 8, 20 45, 140 45 C 260 45, 260 82, 140 98"
+                            }
+                            stroke="#183A34"
+                            strokeWidth="3"
+                            strokeDasharray="9 7"
+                            strokeLinecap="round"
+                            fill="none"
+                            initial={{ strokeDashoffset: 0 }}
+                            animate={{ strokeDashoffset: -32 }}
+                            transition={{
+                              duration: 1.8,
+                              repeat: Infinity,
+                              ease: "linear",
+                            }}
+                          />
+                        </svg>
+                      </div>
                     </div>
                   )}
                 </React.Fragment>
