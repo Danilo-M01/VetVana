@@ -333,7 +333,7 @@ export default function ServicesThreePillars({ onOpenBooking }: ServicesProps) {
                 </div>
 
                 <h3 className="text-2xl sm:text-3xl font-extrabold text-forest mb-6">
-                  {pillars[activePillar].title} — Procedure i nega
+                  {pillars[activePillar].title} Procedure i nega
                 </h3>
 
                 <div className="grid grid-cols-2 gap-5 mb-8">
