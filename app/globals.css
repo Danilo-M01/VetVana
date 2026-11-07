@@ -63,3 +63,12 @@ body {
   background-color: #183A34;
   color: #F7F5F0;
 }
+
+/* Hide scrollbar for horizontal card scroll on mobile */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}

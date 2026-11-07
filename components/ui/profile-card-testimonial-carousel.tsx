@@ -216,9 +216,9 @@ export function ProfileCardCarousel({
       </div>
 
       {/* Mobile / Tablet layout */}
-      <div className="lg:hidden max-w-md mx-auto">
+      <div className="lg:hidden max-w-sm mx-auto">
         {/* Avatar */}
-        <div className="w-full aspect-[4/3] bg-forest/5 rounded-3xl overflow-hidden mb-6 relative border-2 border-white shadow-elevated">
+        <div className="w-full aspect-[3/2] bg-forest/5 rounded-2xl overflow-hidden mb-5 relative border-2 border-white shadow-elevated">
           <AnimatePresence mode="wait">
             <motion.div
               key={currentDoctor.imageUrl}

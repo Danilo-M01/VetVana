@@ -35,7 +35,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[580px] sm:min-h-[640px] lg:min-h-[700px] flex items-center overflow-hidden bg-forest-900 py-16 sm:py-20 lg:py-24">
+    <section className="relative min-h-[520px] sm:min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-forest-900 py-14 sm:py-20 lg:py-24">
       {/* Background Dog Image with Smooth Ambient Zoom */}
       <motion.div
         initial={{ scale: 1.08, opacity: 0 }}
@@ -67,12 +67,12 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl pt-2 sm:pt-4"
+          className="max-w-3xl pt-0 sm:pt-4"
         >
           {/* Main Headline - Lifted up and filled */}
           <motion.h1
             variants={itemVariants}
-            className="text-4xl sm:text-5xl lg:text-[62px] font-extrabold text-white tracking-tight leading-[1.12] mb-6 drop-shadow-sm"
+            className="text-3xl sm:text-5xl lg:text-[62px] font-extrabold text-white tracking-tight leading-[1.12] mb-5 drop-shadow-sm"
           >
             Specijalistička hirurgija i{" "}
             <span className="text-coral-400">
@@ -84,7 +84,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
           {/* Supporting Text */}
           <motion.p
             variants={itemVariants}
-            className="text-lg sm:text-xl lg:text-2xl text-sage-100 leading-relaxed font-normal mb-10 max-w-2xl"
+            className="text-base sm:text-xl lg:text-2xl text-sage-100 leading-relaxed font-normal mb-8 max-w-2xl"
           >
             Veterinarska ambulanta na Novom Beogradu sa vodećom ekspertizom u hirurgiji, dijagnostici i lečenju pasa, mačaka, ptica i egzotičnih životinja.
           </motion.p>

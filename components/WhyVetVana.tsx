@@ -23,42 +23,40 @@ export default function WhyVetVana() {
   ];
 
   return (
-    <section className="py-20 bg-white border-y border-forest/10">
+    <section className="py-14 md:py-20 bg-white border-y border-forest/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="max-w-3xl mb-14">
+        <div className="max-w-3xl mb-10 md:mb-14">
           <span className="text-xs sm:text-sm font-extrabold text-forest uppercase tracking-wider px-3 py-1 rounded-md bg-sage-200">
             Zašto Izabrati Nas
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-forest tracking-tight mt-4 mb-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-forest tracking-tight mt-4 mb-3">
             Klinička preciznost u službi zdravlja vašeg ljubimca
           </h2>
-          <p className="text-base sm:text-lg text-charcoal/80">
+          <p className="text-sm sm:text-lg text-charcoal/80">
             Spoj znanja, opreme najnovije generacije i empatičnog odnosa prema svakoj životinji.
           </p>
         </div>
 
         {/* 3 Value Pillars */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6">
           {points.map((pt, idx) => {
             const Icon = pt.icon;
             return (
               <div
                 key={idx}
-                className="p-8 rounded-3xl bg-ivory border border-forest/10 hover:border-forest/30 transition-all duration-200 flex flex-col justify-between"
+                className="p-6 md:p-8 rounded-3xl bg-ivory border border-forest/10 hover:border-forest/30 transition-all duration-200 flex flex-col"
               >
-                <div>
-                  <div className="w-12 h-12 rounded-2xl bg-sage-200 text-forest flex items-center justify-center mb-6">
-                    <Icon className="w-6 h-6 text-coral" />
-                  </div>
-                  <h3 className="text-xl font-extrabold text-forest mb-3">
-                    {pt.title}
-                  </h3>
-                  <p className="text-sm text-charcoal/85 leading-relaxed">
-                    {pt.desc}
-                  </p>
+                <div className="w-11 h-11 md:w-12 md:h-12 rounded-2xl bg-sage-200 text-forest flex items-center justify-center mb-4 md:mb-6">
+                  <Icon className="w-5 h-5 md:w-6 md:h-6 text-coral" />
                 </div>
+                <h3 className="text-lg md:text-xl font-extrabold text-forest mb-2">
+                  {pt.title}
+                </h3>
+                <p className="text-sm text-charcoal/85 leading-relaxed">
+                  {pt.desc}
+                </p>
               </div>
             );
           })}

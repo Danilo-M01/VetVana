@@ -10,7 +10,7 @@ interface DoctorTeamProps {
 
 export default function DoctorTeam({ onOpenBooking }: DoctorTeamProps) {
   return (
-    <section id="tim" className="py-20 md:py-28 bg-ivory relative overflow-hidden">
+    <section id="tim" className="py-14 md:py-28 bg-ivory relative overflow-hidden">
       {/* Subtle decorative background blur */}
       <div className="absolute top-1/2 -left-40 w-96 h-96 bg-sage-300/40 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute top-1/3 -right-40 w-96 h-96 bg-coral/10 rounded-full blur-3xl pointer-events-none" />

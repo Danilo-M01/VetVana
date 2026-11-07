@@ -36,24 +36,24 @@ export default function ReviewsSection() {
   ];
 
   return (
-    <section id="iskustva" className="py-20 md:py-28 bg-ivory">
+    <section id="iskustva" className="py-14 md:py-28 bg-ivory">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header with Google Score */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 md:mb-14 gap-6">
           <div className="max-w-2xl">
             <span className="text-xs sm:text-sm font-extrabold text-forest uppercase tracking-wider px-3 py-1 rounded-md bg-sage-200">
               Iskustva Vlasnika
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-forest tracking-tight mt-4 mb-3">
+            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-forest tracking-tight mt-4 mb-3">
               Njihove reči govore više
             </h2>
-            <p className="text-base text-charcoal/80">
+            <p className="text-sm text-charcoal/80">
               Poverenje vlasnika i dobrobit njihovih ljubimaca su naše najveće merilo uspeha.
             </p>
           </div>
 
-          <div className="flex flex-col sm:flex-row sm:items-center gap-4 bg-white p-4 sm:p-5 rounded-2xl border border-forest/10 shadow-soft">
+          <div className="flex flex-row items-center gap-4 bg-white p-4 rounded-2xl border border-forest/10 shadow-soft w-fit">
             <div className="flex items-center gap-3">
               <span className="text-3xl font-black text-forest">4.8</span>
               <div>
@@ -74,18 +74,18 @@ export default function ReviewsSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl text-xs font-bold text-forest bg-sage-200 hover:bg-sage-300 transition-colors"
             >
-              <span>Pogledajte sve recenzije</span>
+              <span>Sve recenzije</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </a>
           </div>
         </div>
 
-        {/* 4 Review Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Mobile: horizontal scroll / Desktop: grid */}
+        <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:overflow-visible scrollbar-none -mx-4 px-4 md:mx-0 md:px-0">
           {reviews.map((rev, idx) => (
             <div
               key={idx}
-              className="p-6 rounded-3xl bg-white border border-forest/10 shadow-soft flex flex-col justify-between hover:border-forest/30 transition-all duration-200"
+              className="snap-start flex-shrink-0 w-[82vw] sm:w-[60vw] md:w-auto p-5 md:p-6 rounded-3xl bg-white border border-forest/10 shadow-soft flex flex-col justify-between hover:border-forest/30 transition-all duration-200"
             >
               <div>
                 <div className="flex items-center justify-between mb-4">

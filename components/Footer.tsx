@@ -10,14 +10,14 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-forest-900 text-sage-200 pt-16 pb-24 md:pb-16 border-t border-forest-700">
+    <footer className="bg-forest-900 text-sage-200 pt-12 pb-28 md:pt-16 md:pb-16 border-t border-forest-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Footer Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-12 border-b border-forest-700/60">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 pb-10 border-b border-forest-700/60">
           
           {/* Col 1: Brand & Philosophy */}
-          <div className="lg:col-span-5 flex flex-col items-start">
+          <div className="col-span-2 lg:col-span-5 flex flex-col items-start">
             <Link href="/" className="flex items-center gap-3 mb-4">
               <div className="w-10 h-10 rounded-xl bg-forest-600 border border-forest-500 flex items-center justify-center text-ivory font-extrabold text-xl">
                 <span>V</span>

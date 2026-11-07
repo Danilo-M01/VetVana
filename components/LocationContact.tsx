@@ -5,18 +5,17 @@ import { MapPin, Phone, Clock, Navigation, Car, Bus } from "lucide-react";
 
 export default function LocationContact() {
   return (
-    <section id="kontakt" className="py-20 md:py-28 bg-white border-t border-forest/10">
+    <section id="kontakt" className="py-14 md:py-28 bg-white border-t border-forest/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="max-w-3xl mb-14">
+          <div className="max-w-3xl mb-8 md:mb-14">
           <span className="text-xs sm:text-sm font-extrabold text-forest uppercase tracking-wider px-3 py-1 rounded-md bg-sage-200">
             Lokacija & Dolazak
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-forest tracking-tight mt-4 mb-4">
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-forest tracking-tight mt-4 mb-3">
             Kako do nas u Dr Ivana Ribara
           </h2>
-          <p className="text-base sm:text-lg text-charcoal/80">
+          <p className="text-sm sm:text-lg text-charcoal/80">
             Nalazimo se u mirnom delu Novog Beograda sa jednostavnim prilazom i obezbeđenim javnim parkingom.
           </p>
         </div>
@@ -122,13 +121,13 @@ export default function LocationContact() {
 
           {/* Right: Interactive Google Map */}
           <div className="lg:col-span-7">
-            <div className="w-full h-full min-h-[420px] rounded-3xl overflow-hidden shadow-elevated border-2 border-forest/10 relative bg-sage-100">
+            <div className="w-full h-full min-h-[300px] md:min-h-[420px] rounded-3xl overflow-hidden shadow-elevated border-2 border-forest/10 relative bg-sage-100">
               <iframe
                 title="Lokacija Vet Vana Novi Beograd"
                 src="https://maps.google.com/maps?q=Dr+Ivana+Ribara+115A,+Novi+Beograd&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
-                style={{ border: 0, minHeight: "420px" }}
+                style={{ border: 0, minHeight: "300px" }}
                 allowFullScreen={false}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
