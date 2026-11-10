@@ -35,7 +35,7 @@ export default function Hero({ onOpenBooking }: HeroProps) {
   };
 
   return (
-    <section className="relative min-h-[520px] sm:min-h-[600px] lg:min-h-[700px] flex items-center overflow-hidden bg-forest-900 py-14 sm:py-20 lg:py-24">
+    <section className="relative min-h-[560px] sm:min-h-[640px] lg:min-h-[700px] flex items-stretch overflow-hidden bg-forest-900 py-0 sm:py-24 lg:py-24">
       {/* Background Dog Image with Smooth Ambient Zoom */}
       <motion.div
         initial={{ scale: 1.08, opacity: 0 }}
@@ -62,73 +62,78 @@ export default function Hero({ onOpenBooking }: HeroProps) {
       <div className="absolute top-1/4 left-10 w-72 h-72 bg-coral/20 rounded-full blur-[100px] pointer-events-none z-0" />
       <div className="absolute bottom-10 right-1/4 w-96 h-96 bg-sage-300/15 rounded-full blur-[120px] pointer-events-none z-0" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full sm:flex sm:items-center">
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="max-w-3xl pt-0 sm:pt-4"
+          className="max-w-3xl w-full flex flex-col sm:block min-h-[calc(560px-64px)] sm:min-h-0 pt-16 pb-10 sm:pt-4 sm:pb-0"
         >
-          {/* Main Headline - Lifted up and filled */}
+          {/* Main Headline - top on mobile, normal flow on sm+ */}
           <motion.h1
             variants={itemVariants}
-            className="text-3xl sm:text-5xl lg:text-[62px] font-extrabold text-white tracking-tight leading-[1.12] mb-5 drop-shadow-sm"
+            className="text-[26px] min-[360px]:text-[28px] min-[390px]:text-[30px] sm:text-4xl md:text-5xl lg:text-[58px] font-extrabold text-white tracking-tight leading-[1.28] sm:leading-[1.2] mb-5 sm:mb-8 lg:mb-5 drop-shadow-sm"
           >
-            Specijalistička hirurgija i{" "}
-            <span className="text-coral-400">
-              posvećena nega
-            </span>{" "}
-            za vašeg ljubimca.
+            <span className="block mb-1 sm:mb-1.5 lg:mb-0">Specijalistička hirurgija i</span>
+            <span className="block">
+              <span className="text-coral-400">posvećena nega</span> za vašeg ljubimca.
+            </span>
           </motion.h1>
 
-          {/* Supporting Text */}
+          {/* Spacer top — smaller to push subtitle slightly up */}
+          <div className="flex-[0.6] sm:hidden" />
+
+          {/* Supporting Text — centered between headline and buttons on mobile */}
           <motion.p
             variants={itemVariants}
-            className="text-base sm:text-xl lg:text-2xl text-sage-100 leading-relaxed font-normal mb-8 max-w-2xl"
+            className="text-[15px] sm:text-base md:text-lg text-sage-100/90 leading-relaxed font-normal mb-0 sm:mb-11 lg:mb-8 max-w-xl"
           >
             Veterinarska ambulanta na Novom Beogradu sa vodećom ekspertizom u hirurgiji, dijagnostici i lečenju pasa, mačaka, ptica i egzotičnih životinja.
           </motion.p>
 
+          {/* Spacer bottom — half space below subtitle */}
+          <div className="flex-1 sm:hidden" />
+
           {/* Direct Action Block */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 mb-10"
+            className="flex flex-row items-center gap-3 sm:gap-4 mb-7 sm:mb-14 lg:mb-9 w-full sm:w-auto max-w-md sm:max-w-none"
           >
             <button
               onClick={onOpenBooking}
-              className="px-8 py-4 rounded-2xl font-extrabold text-white bg-coral hover:bg-coral-600 shadow-coral text-base transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center flex items-center justify-center gap-2 group cursor-pointer"
+              className="flex-1 sm:flex-initial px-4 py-3 sm:px-6 sm:py-3.5 rounded-xl sm:rounded-2xl font-extrabold text-white bg-coral hover:bg-coral-600 shadow-coral text-xs sm:text-sm md:text-base transition-all transform hover:-translate-y-0.5 active:translate-y-0 text-center flex items-center justify-center gap-1.5 sm:gap-2 group cursor-pointer"
             >
               <span>ZAKAŽITE PREGLED</span>
-              <Sparkles className="w-4 h-4 text-white/80 group-hover:rotate-12 transition-transform" />
+              <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/80 group-hover:rotate-12 transition-transform" />
             </button>
 
             <a
               href="tel:0638522855"
-              className="px-7 py-4 rounded-2xl font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-base transition-all flex items-center justify-center gap-2.5 group"
+              className="flex-initial px-3.5 py-3 sm:px-5 sm:py-3.5 rounded-xl sm:rounded-2xl font-bold text-white bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 text-xs sm:text-sm md:text-base transition-all flex items-center justify-center gap-1.5 sm:gap-2 group whitespace-nowrap"
             >
-              <Phone className="w-4 h-4 text-coral-300 group-hover:scale-110 transition-transform" />
+              <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-coral-300 group-hover:scale-110 transition-transform" />
               <span>063 852 2855</span>
             </a>
           </motion.div>
 
-          {/* Discreet Trust Indicators */}
+          {/* Trust Indicators / Google reviews — bottom on mobile */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-6 pt-6 border-t border-white/15"
+            className="flex flex-wrap items-center gap-4 sm:gap-6 pt-5 sm:pt-9 lg:pt-6 border-t border-white/15"
           >
             {/* Google Rating */}
             <a
               href="https://search.google.com/local/writereview?placeid=ChIJ5ZNdxhhvWkcRgqEtLCUVpP4"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 text-sm sm:text-base font-semibold text-white/90 hover:text-white transition-colors group"
+              className="inline-flex items-center gap-2 sm:gap-2.5 text-xs sm:text-sm md:text-base font-semibold text-white/90 hover:text-white transition-colors group"
             >
               <div className="flex items-center text-amber-400">
                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                  <Star key={i} className="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <span className="font-extrabold text-white text-base">4.8 ★</span>
+              <span className="font-extrabold text-white text-xs sm:text-base">4.8 ★</span>
               <span className="text-white/40">·</span>
               <span className="underline decoration-white/30 group-hover:decoration-white">
                 24+ Google recenzije
